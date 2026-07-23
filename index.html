@@ -7,8 +7,8 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="SGC Payouts" />
-    <link rel="manifest" href="manifest.webmanifest?v=6" />
-    <link rel="stylesheet" href="styles.css?v=6" />
+    <link rel="manifest" href="manifest.webmanifest?v=7" />
+    <link rel="stylesheet" href="styles.css?v=7" />
     <title>SGC Golf Payouts</title>
   </head>
   <body>
@@ -85,7 +85,19 @@
 
       <section class="panel">
         <h2>Team Scores</h2>
-        <p class="hint">Only selected game columns are shown. Enter relative-to-par scores like -6 when needed. Total columns are auto-calculated as Front + Back. Team player counts come from Game Setup only.</p>
+        <div class="row align-center score-tools">
+          <label class="score-view-label">
+            Score View
+            <select id="scoreView">
+              <option value="all" selected>All Active</option>
+              <option value="first">1st Ball</option>
+              <option value="second">2nd Ball</option>
+              <option value="third">3rd Ball</option>
+              <option value="birdies">Birdies</option>
+            </select>
+          </label>
+        </div>
+        <p class="hint">Use Score View to reduce horizontal scrolling. Enter relative-to-par values like -6. Total columns are auto-calculated as Front + Back.</p>
         <div class="table-wrap">
           <table>
             <thead id="teamTableHead"></thead>
@@ -123,6 +135,6 @@
       </section>
     </main>
 
-    <script src="app.js?v=6"></script>
+    <script src="app.js?v=7"></script>
   </body>
 </html>

@@ -11,6 +11,7 @@ const setupInputs = {
 const gamesTableBody = document.getElementById("gamesTableBody");
 const teamTableHead = document.getElementById("teamTableHead");
 const teamTableBody = document.getElementById("teamTableBody");
+const scoreViewSelect = document.getElementById("scoreView");
 const allocationStatus = document.getElementById("allocationStatus");
 const teamStatus = document.getElementById("teamStatus");
 const validationStatus = document.getElementById("validationStatus");
@@ -46,7 +47,7 @@ const FAMILY_CONFIG = [
 ];
 
 const teamState = Array.from({ length: 8 }, (_, idx) => ({
-  name: `Team #${idx + 1}`,
+  name: `#${idx + 1}`,
   first_front: "",
   first_back: "",
   second_front: "",
@@ -116,8 +117,13 @@ function teamGameValue(team, stat) {
 }
 
 function visibleScoreColumns() {
+  const scoreView = scoreViewSelect ? scoreViewSelect.value : "all";
   const columns = [];
   FAMILY_CONFIG.forEach(({ family, label }) => {
+    if (scoreView !== "all" && scoreView !== family) {
+      return;
+    }
+
     const frontActive = gameIsActive(`${family}_front`);
     const backActive = gameIsActive(`${family}_back`);
     const totalActive = gameIsActive(`${family}_total`);
@@ -167,7 +173,7 @@ function renderTeamTable() {
       .map((column) => {
         if (column.kind === "input") {
           const value = team[column.key] || "";
-          return `<td><input class="score input-green" data-team-index="${idx}" data-stat="${column.key}" type="text" inputmode="numeric" pattern="-?[0-9]*" value="${value}" /></td>`;
+          return `<td><input class="score input-green" data-team-index="${idx}" data-stat="${column.key}" type="text" inputmode="text" pattern="-?[0-9]*" autocomplete="off" autocapitalize="off" spellcheck="false" value="${value}" /></td>`;
         }
 
         const family = column.key.replace("_total", "");
@@ -537,7 +543,7 @@ function calculateAndRender() {
 function resetTeamState() {
   for (let i = 0; i < teamState.length; i += 1) {
     teamState[i] = {
-      name: `Team #${i + 1}`,
+      name: `#${i + 1}`,
       first_front: "",
       first_back: "",
       second_front: "",
@@ -599,6 +605,10 @@ document.addEventListener("change", (event) => {
   if (target.classList.contains("game-active")) {
     renderTeamTable();
     updateSetupDerived();
+  }
+
+  if (target.id === "scoreView") {
+    renderTeamTable();
   }
 });
 

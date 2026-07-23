@@ -295,6 +295,18 @@ td {
   white-space: nowrap;
 }
 
+#teamTableHead th:first-child,
+#teamTableBody td:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  background: #fbfcf9;
+}
+
+#teamTableBody td:first-child {
+  font-weight: 700;
+}
+
 th {
   color: var(--ink-soft);
   font-weight: 700;
@@ -330,9 +342,25 @@ th {
   min-width: 640px;
 }
 
+.score-tools {
+  margin-bottom: 8px;
+}
+
+.score-view-label {
+  min-width: 180px;
+}
+
 @media (max-width: 720px) {
   .app-shell {
     padding: 16px 12px 36px;
+  }
+
+  table {
+    min-width: 640px;
+  }
+
+  .compact {
+    min-width: 540px;
   }
 
   .hero {
@@ -347,5 +375,9 @@ th {
 
   h1 {
     font-size: 2rem;
+  }
+
+  .score-view-label {
+    width: 100%;
   }
 }
