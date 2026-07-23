@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0b2f26" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="SGC Payouts" />
+    <link rel="manifest" href="manifest.webmanifest?v=6" />
+    <link rel="stylesheet" href="styles.css?v=6" />
+    <title>SGC Golf Payouts</title>
+  </head>
+  <body>
+    <div class="bg-shape bg-shape-a" aria-hidden="true"></div>
+    <div class="bg-shape bg-shape-b" aria-hidden="true"></div>
+
+    <main class="app-shell">
+      <header class="hero">
+        <img
+          class="club-logo"
+          src="logo.png"
+          alt="The Sharon Golf Club crest"
+          onerror="this.style.display='none'"
+        />
+        <div>
+          <h1>The Sharon Golf Club</h1>
+          <p class="hero-subtitle">Dwight Axtell's Game</p>
+        </div>
+      </header>
+
+      <section class="panel">
+        <h2>Game Setup</h2>
+        <div class="grid four-up">
+          <label class="input-blue">
+            Total Teams
+            <input id="totalTeams" type="number" min="1" max="8" step="1" value="4" />
+          </label>
+          <label class="input-blue">
+            Total Players
+            <input id="totalPlayers" type="number" min="1" max="60" step="1" value="16" />
+          </label>
+          <label class="input-blue">
+            Entry Fee Per Player ($)
+            <input id="entryFee" type="number" min="0" step="0.01" value="10" />
+          </label>
+          <label class="input-gray">
+            Total Pot ($)
+            <input id="totalPot" type="number" readonly />
+          </label>
+        </div>
+
+        <h3>Game Configuration</h3>
+        <div class="table-wrap">
+          <table class="compact">
+            <thead>
+              <tr>
+                <th>Active</th>
+                <th>Game Name</th>
+                <th>Allocation / Player ($)</th>
+                <th>Game Pot ($)</th>
+              </tr>
+            </thead>
+            <tbody id="gamesTableBody"></tbody>
+          </table>
+        </div>
+
+        <h3>Allocation Validation</h3>
+        <div class="grid three-up">
+          <label class="input-gray">
+            Entry Fee Per Player ($)
+            <input id="entryFeeEcho" type="number" readonly />
+          </label>
+          <label class="input-gray">
+            Total Allocation Per Player ($)
+            <input id="allocationPerPlayer" type="number" readonly />
+          </label>
+          <label class="input-gray">
+            Difference ($)
+            <input id="allocationDifference" type="number" readonly />
+          </label>
+        </div>
+        <p id="allocationStatus" class="hint"></p>
+      </section>
+
+      <section class="panel">
+        <h2>Team Scores</h2>
+        <p class="hint">Only selected game columns are shown. Enter relative-to-par scores like -6 when needed. Total columns are auto-calculated as Front + Back. Team player counts come from Game Setup only.</p>
+        <div class="table-wrap">
+          <table>
+            <thead id="teamTableHead"></thead>
+            <tbody id="teamTableBody"></tbody>
+          </table>
+        </div>
+        <p id="teamStatus" class="hint"></p>
+      </section>
+
+      <section class="panel">
+        <div class="row actions">
+          <button id="calculateBtn" type="button" class="btn">Calculate Payouts</button>
+          <button id="resetBtn" type="button" class="btn ghost">Reset Round</button>
+        </div>
+        <p id="errorBox" class="error" role="alert" aria-live="polite"></p>
+        <p id="validationStatus" class="hint"></p>
+      </section>
+
+      <section class="panel">
+        <h2>Results</h2>
+        <h3>Game Results</h3>
+        <div id="gameResults" class="results-empty">No results yet.</div>
+
+        <h3>Team Summary</h3>
+        <div id="teamSummary" class="results-empty">No results yet.</div>
+      </section>
+
+      <section class="panel">
+        <h2>Cash Settlement</h2>
+        <div id="cashSettlement" class="results-empty">No results yet.</div>
+      </section>
+
+      <section class="panel">
+        <p id="potStatus" class="hint"></p>
+      </section>
+    </main>
+
+    <script src="app.js?v=6"></script>
+  </body>
+</html>

@@ -1,0 +1,10 @@
+{
+  "name": "SGC Golf Payouts",
+  "short_name": "SGC Payouts",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#f6f4ec",
+  "theme_color": "#0b2f26",
+  "description": "Totals-only golf payout calculator for group rounds.",
+  "icons": []
+}
