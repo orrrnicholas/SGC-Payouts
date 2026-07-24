@@ -348,6 +348,25 @@ input.input-missing {
   min-width: 640px;
 }
 
+.compact th,
+.compact td {
+  padding: 8px 4px;
+}
+
+.compact th:first-child,
+.compact td:first-child {
+  width: 44px;
+  text-align: center;
+}
+
+.compact th:nth-child(3),
+.compact td:nth-child(3),
+.compact th:nth-child(4),
+.compact td:nth-child(4) {
+  width: 90px;
+  min-width: 0;
+}
+
 .score-tools {
   margin-bottom: 8px;
 }
@@ -366,7 +385,7 @@ input.input-missing {
   }
 
   .compact {
-    min-width: 540px;
+    min-width: 420px;
   }
 
   .hero {
