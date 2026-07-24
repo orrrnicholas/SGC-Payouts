@@ -345,7 +345,7 @@ input.input-missing {
 }
 
 .compact {
-  min-width: 640px;
+  min-width: 380px;
 }
 
 .compact th,
@@ -363,7 +363,7 @@ input.input-missing {
 .compact td:nth-child(3),
 .compact th:nth-child(4),
 .compact td:nth-child(4) {
-  width: 90px;
+  width: 72px;
   min-width: 0;
 }
 

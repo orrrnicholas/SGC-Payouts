@@ -148,7 +148,7 @@ function renderGameRows() {
     row.innerHTML = `
       <td class="center"><input class="game-active" data-game="${game.key}" type="checkbox" /></td>
       <td>${game.name}</td>
-      <td><input class="alloc input-blue" data-game="${game.key}" type="number" min="0" step="0.01" value="0" /></td>
+      <td><input class="alloc input-blue" data-game="${game.key}" type="number" min="0" step="0.01" /></td>
       <td><input class="game-pot input-gray" data-game-pot="${game.key}" type="number" readonly /></td>
     `;
     gamesTableBody.appendChild(row);
@@ -637,6 +637,12 @@ resetBtn.addEventListener("click", resetRound);
 [setupInputs.totalTeams, setupInputs.totalPlayers, setupInputs.entryFee].forEach((el) => {
   el.addEventListener("focus", () => el.select());
 });
+
+gamesTableBody.addEventListener("focus", (event) => {
+  if (event.target.classList.contains("alloc")) {
+    event.target.select();
+  }
+}, true);
 
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
