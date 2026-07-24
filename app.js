@@ -408,9 +408,9 @@ function renderGameResults(gameRows) {
           <tr>
             <th>Game</th>
             <th>Winner(s)</th>
-            <th>Winning Score</th>
-            <th>Game Pot</th>
-            <th>Each Winner Receives</th>
+            <th>Score</th>
+            <th>Pot</th>
+            <th>Receives</th>
           </tr>
         </thead>
         <tbody>${rows}</tbody>
@@ -538,6 +538,8 @@ function calculateAndRender() {
 
   validationStatus.className = "hint ok";
   validationStatus.textContent = "Calculation complete.";
+
+  document.getElementById("gameResults").scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
 function resetTeamState() {
@@ -557,6 +559,9 @@ function resetTeamState() {
 }
 
 function resetRound() {
+  if (!window.confirm("Reset round? All scores and settings will be cleared.")) {
+    return;
+  }
   setupInputs.totalTeams.value = "";
   setupInputs.totalPlayers.value = "";
   setupInputs.entryFee.value = "";
@@ -628,6 +633,10 @@ document.addEventListener("change", (event) => {
 
 calculateBtn.addEventListener("click", calculateAndRender);
 resetBtn.addEventListener("click", resetRound);
+
+[setupInputs.totalTeams, setupInputs.totalPlayers, setupInputs.entryFee].forEach((el) => {
+  el.addEventListener("focus", () => el.select());
+});
 
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
