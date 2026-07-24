@@ -557,9 +557,9 @@ function resetTeamState() {
 }
 
 function resetRound() {
-  setupInputs.totalTeams.value = "4";
-  setupInputs.totalPlayers.value = "16";
-  setupInputs.entryFee.value = "10";
+  setupInputs.totalTeams.value = "";
+  setupInputs.totalPlayers.value = "";
+  setupInputs.entryFee.value = "";
 
   renderGameRows();
   resetTeamState();
@@ -574,6 +574,16 @@ function resetRound() {
   teamStatus.textContent = "";
 }
 
+function highlightEmptySetupFields() {
+  [setupInputs.totalTeams, setupInputs.totalPlayers, setupInputs.entryFee].forEach((el) => {
+    if (el.value === "") {
+      el.classList.add("input-missing");
+    } else {
+      el.classList.remove("input-missing");
+    }
+  });
+}
+
 document.addEventListener("input", (event) => {
   const target = event.target;
 
@@ -583,6 +593,10 @@ document.addEventListener("input", (event) => {
 
   if (target.id === "totalTeams") {
     renderTeamTable();
+  }
+
+  if (["totalTeams", "totalPlayers", "entryFee"].includes(target.id)) {
+    highlightEmptySetupFields();
   }
 
   if (target.classList.contains("team-name")) {
@@ -626,3 +640,4 @@ if ("serviceWorker" in navigator) {
 renderGameRows();
 renderTeamTable();
 updateSetupDerived();
+highlightEmptySetupFields();
